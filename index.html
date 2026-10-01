@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Interdimensional — Rick and Morty</title>
+</head>
+<body>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h1>Catálogo<br>Interdimensional</h1>
+      <p class="subtitle">Personagens de Rick and Morty. Busque e filtre ao lado.</p>
+
+      <label class="search-field">
+        <span class="field-label">Nome do espécime</span>
+        <input type="search" id="search-input" placeholder="ex: Rick Sanchez" autocomplete="off">
+      </label>
+
+      <div class="status-filters" role="group" aria-label="Filtrar por status">
+        <span class="field-label">Status vital</span>
+        <div class="chip-col">
+          <button class="chip is-active" data-status="">Todos</button>
+          <button class="chip" data-status="alive">
+            <span class="dot dot-alive"></span>Vivo
+          </button>
+          <button class="chip" data-status="dead">
+            <span class="dot dot-dead"></span>Morto
+          </button>
+          <button class="chip" data-status="unknown">
+            <span class="dot dot-unknown"></span>Desconhecido
+          </button>
+        </div>
+      </div>
+
+      <p class="result-count" id="result-count" aria-live="polite"></p>
+
+      <footer class="sidebar-footer">
+        <p>Dados: <a href="https://rickandmortyapi.com" target="_blank" rel="noopener">Rick and Morty API</a></p>
+        <p>Projeto acadêmico "API Hunters"</p>
+      </footer>
+    </aside>
+
+    <main class="content">
+      <div id="loading-state" class="state-panel" hidden>
+        <div class="portal-spinner" aria-hidden="true"></div>
+        <p>Carregando...</p>
+      </div>
+
+      <div id="error-state" class="state-panel state-panel--error" hidden>
+        <p class="error-title">Algo deu errado.</p>
+        <p id="error-message">Não foi possível carregar os dados agora.</p>
+        <button id="retry-btn" class="retry-btn">Tentar novamente</button>
+      </div>
+
+      <div id="empty-state" class="state-panel" hidden>
+        <p class="error-title">Nenhum espécime encontrado.</p>
+        <p>Ajuste o nome buscado ou o filtro de status e tente de novo.</p>
+      </div>
+
+      <div id="card-grid" class="card-list"></div>
+
+      <nav class="pagination" id="pagination" aria-label="Paginação" hidden>
+        <button id="prev-page" class="page-btn">← Anterior</button>
+        <span id="page-indicator" class="page-indicator"></span>
+        <button id="next-page" class="page-btn">Próxima →</button>
+      </nav>
+    </main>
+
+  </div>
+
+  <template id="card-template">
+    <article class="card">
+      <div class="card-media">
+        <img class="card-img" alt="">
+      </div>
+      <div class="card-body">
+        <h2 class="card-name"></h2>
+        <span class="card-status">
+          <span class="dot"></span>
+          <span class="card-status-text"></span>
+        </span>
+        <dl class="card-meta">
+          <div>
+            <dt>Espécie</dt>
+            <dd class="card-species"></dd>
+          </div>
+          <div>
+            <dt>Origem</dt>
+            <dd class="card-origin"></dd>
+          </div>
+          <div>
+            <dt>Última localização</dt>
+            <dd class="card-location"></dd>
+          </div>
+        </dl>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
